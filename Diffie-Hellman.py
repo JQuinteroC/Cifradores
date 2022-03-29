@@ -66,7 +66,7 @@ if __name__ == "__main__":
     print(" Llave privada = B^a mod p")
     privadaA = (B**a)%p
     print(str(B)+"^"+str(a)+" mod "+str(p)+" =", privadaA)
-    print("La llave secreta calculada desde \"a\" es:", privadaA)
+    print("La llave privada calculada desde \"a\" es:", privadaA)
 
 
     print("-------------------------------------------------\n")
