@@ -66,6 +66,19 @@ def es_primo(n):
     return True
 
 def generar_llaves(p, q):
+    """Generar las llaves de cifrador
+
+    Args:
+        p (int): primo p
+        q (int): primo q
+
+    Raises:
+        ValueError: Ambos números deben ser primos
+        ValueError: p y q deben ser diferentes
+
+    Returns:
+        list: Lista de llaves publicas y privadas
+    """
     if not (es_primo(p) and es_primo(q)):
         raise ValueError('Ambos números deben ser primos.')
     elif p == q:
@@ -89,7 +102,15 @@ def generar_llaves(p, q):
     return ((e, n), (d, n))
 
 def encriptar(llave_publica, texto_plano):
-    
+    """Combierte cada caracter al codigo ASCII y lo encripta
+
+    Args:
+        llave_publica (int): llave publica para cifrar el texto
+        texto_plano (string): texto que se busca cifrar
+
+    Returns:
+        string: texto cifrado
+    """
     llave, n = llave_publica
     # Convert each letter in the plaintext to numbers based on the character using a^b mod m
     texto_cifrado = [pow(ord(char), llave, n) for char in texto_plano]
@@ -97,7 +118,15 @@ def encriptar(llave_publica, texto_plano):
     return texto_cifrado
 
 def desencriptar(llave_privada, texto_cifrado):
-    
+    """Desencripta el mensaje y combierte cada caracter de ASCII a su letra correspondiente
+
+    Args:
+        llave_privada (int): llave privada
+        texto_cifrado (string): texto cifrado
+
+    Returns:
+        string: texto desencriptado
+    """
     llave, n = llave_privada
     # Generate the plaintext based on the ciphertext and key using a^b mod m
     aux = [str(pow(char, llave, n)) for char in texto_cifrado]
